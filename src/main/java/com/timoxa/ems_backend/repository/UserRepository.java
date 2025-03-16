@@ -1,8 +1,8 @@
 package com.timoxa.ems_backend.repository;
 
-import com.timoxa.ems_backend.entity.Employee;
+import com.timoxa.ems_backend.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Employee, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }

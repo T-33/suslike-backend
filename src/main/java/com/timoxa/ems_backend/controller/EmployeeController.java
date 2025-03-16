@@ -1,8 +1,7 @@
 package com.timoxa.ems_backend.controller;
 
-import com.timoxa.ems_backend.dto.EmployeeDto;
-import com.timoxa.ems_backend.entity.Employee;
-import com.timoxa.ems_backend.service.EmployeeService;
+import com.timoxa.ems_backend.dto.UserDto;
+import com.timoxa.ems_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,40 +19,40 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final UserService userService;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
-        EmployeeDto savedEmployee = employeeService.createEmployee(employeeDto);
+    public ResponseEntity<UserDto> createEmployee(@RequestBody UserDto userDto) {
+        UserDto savedEmployee = userService.createUser(userDto);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId) {
-        EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
-        return ResponseEntity.ok(employeeDto);
+    public ResponseEntity<UserDto> getEmployeeById(@PathVariable("id") Long employeeId) {
+        UserDto userDto = userService.getUserById(employeeId);
+        return ResponseEntity.ok(userDto);
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
-        List<EmployeeDto> employees = employeeService.getAllEmployees();
+    public ResponseEntity<List<UserDto>> getAllEmployees() {
+        List<UserDto> employees = userService.getAllEmployees();
         return ResponseEntity.ok(employees);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId, @RequestBody EmployeeDto updatedEmployee) {
-        EmployeeDto employeeDto = employeeService.updateEmployee(employeeId, updatedEmployee);
-        return ResponseEntity.ok(employeeDto);
+    public ResponseEntity<UserDto> updateEmployee(@PathVariable("id") Long employeeId, @RequestBody UserDto updatedEmployee) {
+        UserDto userDto = userService.updateUser(employeeId, updatedEmployee);
+        return ResponseEntity.ok(userDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<EmployeeDto> deleteEmployee(@PathVariable("id") Long employeeId) {
-        EmployeeDto employeeDto = employeeService.deleteEmployee(employeeId);
+    public ResponseEntity<UserDto> deleteEmployee(@PathVariable("id") Long employeeId) {
+        UserDto userDto = userService.deleteUser(employeeId);
 
-        return ResponseEntity.ok(employeeDto);
+        return ResponseEntity.ok(userDto);
     }
 }
