@@ -3,25 +3,27 @@ package com.timoxa.ems_backend.mapper;
 import com.timoxa.ems_backend.dto.UserDto;
 import com.timoxa.ems_backend.entity.User;
 
-public class EmployeeMapper {
+public class UserMapper {
 
-    private EmployeeMapper(){}
+    private UserMapper(){}
 
     public static UserDto mapToEmployeeDto(User user) {
         return new UserDto(
                 user.getId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail()
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getCreatedAt()
         );
     }
 
     public static User mapToEmployee(UserDto userDto) {
         return new User(
                 userDto.getId(),
-                userDto.getFirstName(),
-                userDto.getLastName(),
-                userDto.getEmail()
+                userDto.getUsername(),
+                userDto.getPassword(),
+                userDto.getEmail(),
+                userDto.getCreatedAt()
         );
     }
 }
