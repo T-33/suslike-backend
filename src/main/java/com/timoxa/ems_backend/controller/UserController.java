@@ -16,42 +16,42 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees")
-public class EmployeeController {
+@RequestMapping("/api/users")
+public class UserController {
 
     private final UserService userService;
 
-    public EmployeeController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createEmployee(@RequestBody UserDto userDto) {
-        UserDto savedEmployee = userService.createUser(userDto);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        UserDto savedUser = userService.createUser(userDto);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDto> getEmployeeById(@PathVariable("id") Long employeeId) {
-        UserDto userDto = userService.getUserById(employeeId);
+    public ResponseEntity<UserDto> getUserById (@PathVariable("id") Long userId) {
+        UserDto userDto = userService.getUserById(userId);
         return ResponseEntity.ok(userDto);
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllEmployees() {
-        List<UserDto> employees = userService.getAllEmployees();
-        return ResponseEntity.ok(employees);
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UserDto> updateEmployee(@PathVariable("id") Long employeeId, @RequestBody UserDto updatedEmployee) {
-        UserDto userDto = userService.updateUser(employeeId, updatedEmployee);
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId, @RequestBody UserDto updatedUser) {
+        UserDto userDto = userService.updateUser(userId, updatedUser);
         return ResponseEntity.ok(userDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<UserDto> deleteEmployee(@PathVariable("id") Long employeeId) {
-        UserDto userDto = userService.deleteUser(employeeId);
+    public ResponseEntity<UserDto> deleteUser(@PathVariable("id") Long userId) {
+        UserDto userDto = userService.deleteUser(userId);
 
         return ResponseEntity.ok(userDto);
     }
